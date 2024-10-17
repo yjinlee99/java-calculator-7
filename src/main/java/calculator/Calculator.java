@@ -1,11 +1,29 @@
 package calculator;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Calculator {
+
+    public String findCustomSeparator(String str) {
+
+        Pattern pattern = Pattern.compile("//(.)\\n(.*)");
+        Matcher matcher = pattern.matcher(str);
+
+        if (matcher.matches()) {
+            return matcher.group(1);  // 첫 번째 그룹은 구분자
+        }
+
+        return null;
+    }
+
     public int sum(String str) {
 
         if(str == null || str.isEmpty()) {
             return 0;
         }
+
+        String custom = findCustomSeparator(str);
 
         String[] nums = str.split(",|:");
         int sum = 0;

@@ -54,4 +54,17 @@ class CalculatorTest {
         assertThatThrownBy(() -> calculator.sum(str))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 커스텀_문자열_찾기() {
+        //given
+        final Calculator calculator = new Calculator();
+        final String str = "//;\\n1;2;3";
+
+        //when
+        String result = calculator.findCustomSeparator(str);
+
+        //Then
+        assertThat(result).isEqualTo(";");
+    }
 }
